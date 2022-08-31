@@ -1,5 +1,5 @@
 import React from "react";
-import CartWindget from './CartWindget/CartWindget';
+import CartWidget from './CartWidget/CartWidget';
 
 const navbar = () => {
     return(
@@ -18,7 +18,7 @@ const navbar = () => {
                     </li>
                 </ul>
             </div>
-            <CartWindget/>
+            <CartWidget/>
         </nav>
     )
 }
