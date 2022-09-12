@@ -12,6 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+html, body{
+  min-height: 100%;
+}
+body { background-color: antiquewhite; }
+
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +40,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-link{
+  font-size:xx-large !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  font-weight: 700 !important;
 }
