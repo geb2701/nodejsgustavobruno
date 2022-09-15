@@ -1,37 +1,34 @@
 import { useState } from "react";
 
-const ItemCount = ({numeroInicial, stock, OnAdd }) => {
-    const [contador, setContador] = useState(numeroInicial)
+const ItemCount = ({numeroInicial, stock, onAdd }) => {
+    const [count, setCount] = useState(numeroInicial)
+
     const suma = () =>{
-        if (contador < stock){
-            setContador(contador+1);
+        if (count < stock){
+            setCount(count+1);
         }
     }
     
     const resta = () =>{
-        if (contador > 1){
-            setContador(contador-1);
+        if (count > 1){
+            setCount(count-1);
         }
     }
 
-    const AñadirAlCarro = () =>{
-        if (contador > stock){
-            alert("No hay Stock Suficiente \n OnAdd=" + OnAdd )
-        }
-        else{
-            alert("Añadido Al Carro Correctamente\n Cantidad =" + contador +" \n OnAdd=" + OnAdd)
-        }
-    }
     return (
+        
         <div className="item-count">
+            <div>
+                <p className="item-count-count">Stock Disponible: {stock}</p>
+            </div>
             <div className="item-count">
                 <button onClick={resta} className="btn btn-secondary">-</button>
-                <p className="item-count-contador">{contador}</p>
+                <p className="item-count-contador">{count}</p>
                 <button onClick={suma} className="btn btn-secondary">+</button>
             </div>
             
             <div className="item-count">
-                <button onClick={AñadirAlCarro} className="button-add">Añadir al Carro</button>
+                <button onClick={()=>onAdd(count)} className="button-add">Añadir al Carro</button>
             </div>
         </div>
     );

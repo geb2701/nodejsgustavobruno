@@ -19,6 +19,7 @@ const ItemListContainer = () => {
   });
 
   useEffect(() => {
+    setItems(null)
     getProduct.then((result) => {
       if (categoriaId!=null){
         const listaProductos = result.filter(item=>item.categoriaId === categoriaId)
@@ -51,7 +52,7 @@ const ItemListContainer = () => {
           </div>
           ) : (
             <Loader/>
-      )}
+          )}
       </div>
     </>
   )
