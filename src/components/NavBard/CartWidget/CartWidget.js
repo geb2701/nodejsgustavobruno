@@ -1,5 +1,5 @@
 import React from "react";
-import Carrito from "../../assests/img/carrito.png"
+import Carrito from "../../../assests/img/carrito.png"
 import styles from "./style.css"
 
 

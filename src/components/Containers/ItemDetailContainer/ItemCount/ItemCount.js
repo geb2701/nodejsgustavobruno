@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const ItemCount = ({numeroInicial, stock, onAdd }) => {
     const [count, setCount] = useState(numeroInicial)
