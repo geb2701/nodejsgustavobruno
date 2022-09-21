@@ -8,64 +8,40 @@ const ItemDetail  = ({item}) => {
 
   const [contador, setContador] = useState();
   const [comprar, setComprar] = useState();
-  const [pagar, setPagar] = useState();
-  const {addItem, isInCart} = useContext(CartContext)
-  let error
+  const {addItem} = useContext(CartContext)
 
   const onAdd = (count) =>{
     setContador(count)
-    let consulta = isInCart(id)
     setComprar(true);
-    if (consulta == false){
-      setPagar(true)
-      addItem(item, count)
-    }
-    else {
-      setPagar(false)
-    }
-    
-    
+    addItem(item, count)
   }
   
-    return (
-      <div>
-          <h1>{name}</h1>
-          <img src={image} alt={name} className={"product-img"}/>
-          <h3>{description}</h3>
-          <h2>{price}</h2>
-          
-          {comprar ? (
-          <div className="product-container">
-            {pagar ? (
-              <>
-              <h2>Se ha Añadido el producto "{name}" a su carrito</h2>
-              <div>
-                <p>Cantidad: {contador}</p>
-                <Link to="/Carrito">
-                  <button className="button-add">Pagar</button>
-                </Link>
-              </div>
-              
-              </>
-            ) : (
-              <>
-              <h2>Su producto {name} ya esta en el carrito</h2>
+  return (
+    <div>
+        <h1>{name}</h1>
+        <img src={image} alt={name} className={"product-img"}/>
+        <h3>{description}</h3>
+        <h2>{price}</h2>
+        
+        {comprar ? (
+        <div className="product-container">
+          <h2>Se ha Añadido el producto "{name}" a su carrito</h2>
+            <div>
+              <p>Cantidad: {contador}</p>
               <Link to="/Carrito">
                 <button className="button-add">Pagar</button>
               </Link>
-              </>
-            )}
-            
-          </div>
-          ) : (
-            <>
-              <ItemCount numeroInicial={1} stock={stock} onAdd={onAdd}/> 
-            </>
-          )}
+            </div>
+        </div>
+        ) : (
+          <>
+            <ItemCount id={id} stock={stock} onAdd={onAdd}/> 
+          </>
+        )}
 
-          
-      </div>
-    )
+        
+    </div>
+  )
 }
   
 export default ItemDetail 

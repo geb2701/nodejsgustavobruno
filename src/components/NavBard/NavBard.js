@@ -12,13 +12,13 @@ const navbar = () => {
                 </Link>
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         <li className={({isActive}) => isActive ? "nav-item active" : "nav-item "}>
-                            <Link to="/" className="nav-link">Home</Link>
+                            <Link to="/">Home</Link>
                         </li>
                         <li className={({isActive}) => isActive ? "nav-item active" : "nav-item "}>
-                            <Link to="/Productos" className="nav-link">Tienda</Link>
+                            <Link to="/Productos">Tienda</Link>
                         </li>
                         <li className={({isActive}) => isActive ? "nav-item active" : "nav-item "}>
-                            <Link to="/Contacto" className="nav-link">Contacto</Link>
+                            <Link to="/Contacto">Contacto</Link>
                         </li>
                     </ul>
                 </div>

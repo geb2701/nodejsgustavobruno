@@ -1,20 +1,18 @@
 import styles from "../Container.css"
 import { CartContext } from "../../Context/CartContext"
 import { useContext } from "react"
+import CartItem from "./CartItem/CartItem"
+import {Link} from "react-router-dom";
 
 const CartContainer  = () => {
-  const {productCartList, removeItem} = useContext(CartContext);
-  const {removeAllItems} = useContext(CartContext);
+  const {productCartList, removeAllItems} = useContext(CartContext);
 
   return (
     <div className="page-container">
-        <h1>Cart</h1>
+        <h1>Carrito</h1>
         <div>
           {productCartList.map(item=>(
-            <>
-            <p>{item.id}){item.name}-{item.quantity}</p>
-            <button onClick={()=>removeItem(item.id)}>Eliminar </button>
-            </>
+            <CartItem item={item} key={item.id}/>
           ))}
           <div>
             <button onClick={()=>removeAllItems()}>Eliminar Todo</button>
@@ -26,6 +24,3 @@ const CartContainer  = () => {
 }
 
 export default CartContainer
-
-
-  

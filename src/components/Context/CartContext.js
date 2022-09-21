@@ -11,9 +11,21 @@ export const CartProvider = ({children}) =>{
             ...item,
             quantity: quantity
         }
-        const newArreglo =[...productCartList]
-        newArreglo.push(newProduct)
-        setProductCartList(newArreglo)
+
+        if(isInCart(item.id)){
+            const productPos = productCartList.findIndex(product=>product.id === item.id);
+            let newQuantity = productPos.quantity + quantity
+            if (newQuantity > productPos.stock){
+                newQuantity = productPos.stock
+            }
+            const newArreglo = [...productCartList];
+            newArreglo[productPos].quantity = newQuantity;
+            setProductCartList(newArreglo);
+        } else{
+            const newArreglo = [...productCartList];
+            newArreglo.push(newProduct);
+            setProductCartList(newArreglo);
+        }
     }
 
     const removeItem = (itemId) =>{
@@ -26,15 +38,9 @@ export const CartProvider = ({children}) =>{
         setProductCartList(newArreglo)
     }
 
-    const isInCart = (id) =>{
-        const consulta = productCartList.find(item => item.id == id)
-        if (consulta !=null){
-            return(true)
-        }
-        else{
-            return(false)
-        }
-        
+    const isInCart = (productId)=>{
+        const productExist = productCartList.find(item=>item.id === productId);
+        return productExist;
     }
 
     return(
@@ -42,5 +48,4 @@ export const CartProvider = ({children}) =>{
             {children}
         </CartContext.Provider>
     )
-    
 }
