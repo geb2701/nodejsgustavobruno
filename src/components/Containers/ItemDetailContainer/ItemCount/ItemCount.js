@@ -4,7 +4,6 @@ import { CartContext } from "../../../Context/CartContext";
 const ItemCount = ({id, stock, onAdd }) => {
     const [count, setCount] = useState(1)
     const {isInCart} = useContext(CartContext)
-    const [availableBuy, setAvailableBuy] = useState(true);
 
     let productInCart = isInCart(id)
     if (productInCart != null){
@@ -50,31 +49,19 @@ const ItemCount = ({id, stock, onAdd }) => {
         }
     }
 
-    function habilitarCompra(){
-        if (stock <= 0) {
-            setAvailableBuy()
-        }
-    }
-
     return (
         <div className="item-count">
             <div>
                 {cantidadCarro()}
                 <p className="item-count-count">Stock Disponible: {stock}</p>
             </div>
-            {availableBuy ? (
             <div className="item-count">
-            
                 <button onClick={resta} className="btn btn-secondary">-</button>
                 <p className="item-count-contador">{count}</p>
                 <button onClick={suma} className="btn btn-secondary">+</button>
             </div>
-            ):(
-                <div></div>
-            )}
             {btn()}
         </div>
-        
     );
       
 };

@@ -7,24 +7,26 @@ export const CartProvider = ({children}) =>{
     const [productCartList, setProductCartList] = useState([]);
 
     const addItem = (item, quantity) =>{
-        const newProduct ={
-            ...item,
-            quantity: quantity
-        }
-
-        if(isInCart(item.id)){
-            const productPos = productCartList.findIndex(product=>product.id === item.id);
-            let newQuantity = productPos.quantity + quantity
-            if (newQuantity > productPos.stock){
-                newQuantity = productPos.stock
+        if (quantity>0){
+            if(isInCart(item.id)){
+                const productPos = productCartList.findIndex(product=>product.id === item.id);
+                const product = productCartList.find(product=>product.id === item.id);
+                let newQuantity = product.quantity + quantity
+                if (newQuantity > product.stock){
+                    newQuantity = product.stock
+                }
+                const newArreglo = [...productCartList];
+                newArreglo[productPos].quantity = newQuantity;
+                setProductCartList(newArreglo);
+            } else{
+                const newProduct ={
+                    ...item,
+                    quantity: quantity
+                }
+                const newArreglo = [...productCartList];
+                newArreglo.push(newProduct);
+                setProductCartList(newArreglo);
             }
-            const newArreglo = [...productCartList];
-            newArreglo[productPos].quantity = newQuantity;
-            setProductCartList(newArreglo);
-        } else{
-            const newArreglo = [...productCartList];
-            newArreglo.push(newProduct);
-            setProductCartList(newArreglo);
         }
     }
 
@@ -43,8 +45,30 @@ export const CartProvider = ({children}) =>{
         return productExist;
     }
 
+    const quantityItems = ()=>{
+        let quantity = 0
+        productCartList.forEach(element => {
+            quantity+=element.quantity
+        });
+        return quantity;
+    }
+
+    const deleteItem = (item, quantity) =>{
+        if(isInCart(item.id) && (quantity>0)){
+            const productPos = productCartList.findIndex(product=>product.id === item.id);
+            const product = productCartList.find(product=>product.id === item.id);
+            let newQuantity = product.quantity - quantity
+            if (newQuantity <= 0){
+                newQuantity = 1
+            }
+            const newArreglo = [...productCartList];
+            newArreglo[productPos].quantity = newQuantity;
+            setProductCartList(newArreglo);
+        }
+    }
+
     return(
-        <CartContext.Provider value={{productCartList, addItem, removeItem, removeAllItems, isInCart}}>
+        <CartContext.Provider value={{productCartList, addItem, removeItem, removeAllItems, isInCart, quantityItems, deleteItem}}>
             {children}
         </CartContext.Provider>
     )

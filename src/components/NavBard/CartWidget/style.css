@@ -1,7 +1,19 @@
 .img-carrito{
     width: 80px;
     height: 56px;
+    position: relative;
+    
 }
 .div-carrito{
     float:left;
+    width: 180px;
+    height: 56px;
+    text-decoration: none !important;
+    box-shadow: none;
+}
+.inline { 
+    display:inline;
+    color:white;
+    text-decoration: none !important;
+    box-shadow: none;
 }

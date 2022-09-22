@@ -29,7 +29,7 @@ const ItemDetail  = ({item}) => {
             <div>
               <p>Cantidad: {contador}</p>
               <Link to="/Carrito">
-                <button className="button-add">Pagar</button>
+                <button className="button-add">Terminar mi compra</button>
               </Link>
             </div>
         </div>
