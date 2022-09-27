@@ -39,7 +39,7 @@ const CartItem  = ({item}) => {
     return (
         <div>
             <div>
-                <h1>{item.id}){item.name}</h1>
+                <h1>{item.name}</h1>
                 <div>
                     <div className="item-count">
                         {btnMemos()}
