@@ -53,6 +53,14 @@ export const CartProvider = ({children}) =>{
         return quantity;
     }
 
+    const totalPrice =()=>{
+        let price = 0
+        productCartList.forEach(element => {
+            price+=element.price.slice(1)*element.quantity
+        });
+        return price;
+    }
+
     const deleteItem = (item, quantity) =>{
         if(isInCart(item.id) && (quantity>0)){
             const productPos = productCartList.findIndex(product=>product.id === item.id);
@@ -68,7 +76,7 @@ export const CartProvider = ({children}) =>{
     }
 
     return(
-        <CartContext.Provider value={{productCartList, addItem, removeItem, removeAllItems, isInCart, quantityItems, deleteItem}}>
+        <CartContext.Provider value={{productCartList, addItem, removeItem, removeAllItems, isInCart, quantityItems, deleteItem, totalPrice}}>
             {children}
         </CartContext.Provider>
     )

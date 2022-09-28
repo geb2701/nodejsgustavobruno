@@ -20,7 +20,6 @@ const ItemDetailContainer  = () => {
           ...response.data(),
         }
         setItem(newItem)
-        console.log(newItem)
       }
       
       getItem()

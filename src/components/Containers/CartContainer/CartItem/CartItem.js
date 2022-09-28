@@ -43,10 +43,9 @@ const CartItem  = ({item}) => {
                 <div>
                     <div className="item-count">
                         {btnMemos()}
-                        <h2 className="item-count-contador ">Cantidad:{item.quantity} ({item.price})</h2>
+                        <h3 className="item-count-contador ">Cantidad:{item.quantity} Precio:{item.price} (${precioTotal})</h3>
                         {btnMas()}
                     </div>
-                    <h2>Total: {precioTotal}</h2>
                     <button onClick={()=>removeItem(item.id)} className={"btn btn-secondary button-add"}>Eliminar </button>
                 </div>
             </div>
