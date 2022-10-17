@@ -41,3 +41,7 @@
     50% {height:5px;transform:translateY(0px);background:#6aaed6;}
     100% {height:5px;transform:translateY(0px);background:#6aaed6;}
   }
+
+  .espaciado{
+    padding: 40px;
+  }

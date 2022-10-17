@@ -1,29 +1,42 @@
 import styles from "./ProductsCategories.css"
 import { useState } from "react";
 import { useEffect } from "react";
-import CategoryList from "../Mock/mock-Categories"
 import CategoriesList from "./CategoriesList/CategoriesList"
 import React from "react";
+import {db} from "../../utils/firebase";
+import {collection, getDocs} from "firebase/firestore"
+import Loader from "../Loader/Loader";
 
 const ProductsCategories = () => {
-    const [category, setCategories] = useState();
+  const [category, setCategories] = useState();
 
-    const getCategories = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(CategoryList);
-      }, 2000);
-    });
-      useEffect(() => {
-        getCategories.then((result) => {
-            setCategories(result);
-        });
-      },);
+  useEffect(() => {
+    const queryRef = collection(db, "categories")
+    getDocs(queryRef).then(response=>{
+      const result = response.docs.map(doc=>{
+        const newCategory = {
+          id: doc.id,
+          ...doc.data(),
+        }
+        return newCategory
+        
+      })
+      setCategories(result);
+    })
+  },);
 
-    if (category!=null){
-    return (
-        <CategoriesList categoriesList={category}/>
-    )
-    }
+  return (
+    <>
+      {category ? (
+        <>
+          <CategoriesList categoriesList={category}/>
+        </>
+        ) : (
+          <Loader/>
+        )}
+        
+    </>
+  )
 }
 
 export default ProductsCategories

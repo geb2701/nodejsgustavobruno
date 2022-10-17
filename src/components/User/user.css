@@ -1,0 +1,14 @@
+.datos{
+    align-items: center;
+    width: 100%;
+}
+
+.datos-rigth{
+    text-align: right;
+    width: 50%;
+}
+
+.datos-left{
+    text-align: left;
+    width: 50%;
+}

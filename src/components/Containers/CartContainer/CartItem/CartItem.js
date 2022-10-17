@@ -1,6 +1,8 @@
 import { CartContext } from "../../../Context/CartContext"
 import { useContext } from "react"
 
+
+
 const CartItem  = ({item}) => {
     const {removeItem, addItem, deleteItem} = useContext(CartContext);
     let precioTotal = 0
@@ -37,9 +39,10 @@ const CartItem  = ({item}) => {
     }
 
     return (
-        <div>
+        <div className='product-content'>
             <div>
-                <h1>{item.name}</h1>
+                <h2>{item.name}</h2>
+                <img src={item.image} alt={item.name} className={"product-img"}/>
                 <div>
                     <div className="item-count">
                         {btnMemos()}

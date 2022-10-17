@@ -1,7 +1,8 @@
 import React from "react";
 import Category from "../Category/Category"
 
-const CategoriesList  = ({categoriesList}) => {
+const CategoriesList  = ({categoriesList}) => { 
+
 return(
     <>
         {categoriesList.map((category) => {
@@ -19,4 +20,4 @@ return(
 
 
 
-export default CategoriesList 
+export default CategoriesList

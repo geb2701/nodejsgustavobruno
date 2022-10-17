@@ -2,7 +2,6 @@ import styles from "../Container.css"
 import { useState } from "react";
 import { useEffect } from "react";
 import ItemList from "./ItemList/ItemList";
-import productList from "../../Mock/mock-Products"
 import { useParams } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import ProductsCategories from "../../ProductsCategories/ProductsCategories";
@@ -13,8 +12,6 @@ const ItemListContainer = () => {
   const [items, setItems] = useState();
   const {categoriaId} = useParams();
   var titulo
-
-  
 
   useEffect(() => {
     setItems(null)
